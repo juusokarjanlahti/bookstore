@@ -9,20 +9,11 @@ COPY pom.xml .
 COPY mvnw . 
 COPY .mvn .mvn
 
-# Download dependencies (this is cached if pom.xml hasn't changed)
-RUN ./mvnw dependency:go-offline
-
 # Copy the source code
 COPY src src
 
-# Package the application (skip tests to speed up build)
-RUN ./mvnw clean package -DskipTests
-
 # Runtime stage
 FROM openjdk:17-jdk-slim
-
-# Set the working directory in the runtime container
-WORKDIR /app
 
 # Copy the jar file from the build stage
 COPY --from=build /app/target/*.jar app.jar
