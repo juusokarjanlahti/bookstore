@@ -27,7 +27,8 @@ FROM openjdk:17-jdk-slim
 WORKDIR /app
 
 # Copy the jar file from the build stage
-COPY --from=build /app/target/bookstore-0.0.1-SNAPSHOT.jar app.jar
+COPY --from=build /app/target/*.jar app.jar
+
 
 # Expose the port your Spring Boot app runs on
 EXPOSE 8080
