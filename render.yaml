@@ -1,9 +1,8 @@
 services:
   - type: web
     name: bookstore
-    env: java
-    buildCommand: ./mvnw clean install
-    startCommand: java -jar target/bookstore-0.0.1-SNAPSHOT.jar
+    env: docker
+    dockerfilePath: ./Dockerfile
     envVars:
       - key: SPRING_PROFILES_ACTIVE
         value: prod
